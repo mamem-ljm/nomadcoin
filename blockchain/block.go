@@ -41,8 +41,6 @@ func FindBlock(hash string) (*Block, error) {
 	return block, nil
 }
 
-// https://github.com/mamem-ljm/nomadcoin.git
-
 func (b *Block) mine() {
 	target := strings.Repeat("0", b.Difficulty)
 	for {
@@ -58,12 +56,12 @@ func (b *Block) mine() {
 	}
 }
 
-func createBlock(prevHash string, height int) *Block {
+func createBlock(prevHash string, height int, diff int) *Block {
 	block := &Block{
 		Hash:       "",
 		PrevHash:   prevHash,
 		Height:     height,
-		Difficulty: difficulty(Blockchain()),
+		Difficulty: diff,
 		Nonce:      0,
 	}
 	block.mine()
